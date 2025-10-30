@@ -11,7 +11,8 @@
 
 ### 1.1 Définition et Contexte
 
-La **science des données** (Data Science) est un domaine interdisciplinaire qui combine les statistiques, l'informatique et l'expertise métier pour extraire des connaissances et des insights à partir de données structurées et non structurées.
+La **science des données** (Data Science)
+est un domaine interdisciplinaire qui combine les statistiques, l'informatique et l'expertise métier pour extraire des connaissances et des insights à partir de données structurées et non structurées.
 
 **Pourquoi la science des données est-elle cruciale en entreprise ?**
 
