@@ -1,4 +1,5 @@
-<img width="300" height="500" alt="image" src="https://github.com/user-attachments/assets/4363f236-7e6b-4fae-8d12-f01561d016aa" />     EL YESRI INASS
+<img width="300" height="500" alt="image" src="https://github.com/user-attachments/assets/4363f236-7e6b-4fae-8d12-f01561d016aa" />     
+EL YESRI INASS
 
 
 # Rapport d'Analyse Approfondie du PIB International
