@@ -1,4 +1,4 @@
-                                                                                                                        ![encg](https://github.com/user-attachments/assets/c66fe013-25ab-41ff-8e10-1293d2879d30)
+![encg](https://github.com/user-attachments/assets/c66fe013-25ab-41ff-8e10-1293d2879d30)
 
 
 EL YESRI INASS
