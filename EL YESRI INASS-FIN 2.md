@@ -1,7 +1,10 @@
+                                                                                                                        ![encg](https://github.com/user-attachments/assets/c66fe013-25ab-41ff-8e10-1293d2879d30)
 
 
 EL YESRI INASS
+
 <img width="300" height="500" alt="image" src="https://github.com/user-attachments/assets/57187427-8c71-4f52-9ba4-908ef0aa3fdd" />
+
 
 
 # Rapport d'Analyse Approfondie du PIB International
