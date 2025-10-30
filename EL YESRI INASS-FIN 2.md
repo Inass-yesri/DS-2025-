@@ -1,6 +1,7 @@
-<img width="300" height="500" alt="image" src="https://github.com/user-attachments/assets/4363f236-7e6b-4fae-8d12-f01561d016aa" />     
-EL YESRI INASS
 
+
+EL YESRI INASS
+![Analyse statistique](WhatsApp Image 2025-10-30 at 11.21.33.jpeg)
 
 # Rapport d'Analyse Approfondie du PIB International
 
