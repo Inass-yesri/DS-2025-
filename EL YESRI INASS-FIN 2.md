@@ -1,6 +1,10 @@
+
+
+EL YESRI INASS
+
+
 # Rapport d'Analyse Approfondie du PIB International
 
----
 
 ## 1. INTRODUCTION
 
