@@ -1,7 +1,8 @@
 
 
 EL YESRI INASS
-![Analyse statistique](WhatsApp Image 2025-10-30 at 11.21.33.jpeg)
+<img width="300" height="500" alt="image" src="https://github.com/user-attachments/assets/57187427-8c71-4f52-9ba4-908ef0aa3fdd" />
+
 
 # Rapport d'Analyse Approfondie du PIB International
 
@@ -1169,7 +1170,13 @@ Cette analyse fournit une base solide pour comprendre les équilibres économiqu
 
 Le code complet de cette analyse est disponible et peut être exécuté séquentiellement dans un environnement Python avec les bibliothèques pandas, matplotlib, seaborn et numpy installées.
 
+
+<img width="600" height="800" alt="télécharger" src="https://github.com/user-attachments/assets/d15a7765-ed30-4f4c-97ba-6b8d331511ff" />
+
 ---
+
+
+
 
 **Rapport généré le :** 30 octobre 2025  
 **Auteur :** Analyse Claude AI  
