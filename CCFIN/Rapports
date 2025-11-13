@@ -1,8 +1,6 @@
-Introduction générale
+# Introduction générale
 Le dataset Wisconsin Diagnostic Breast Cancer (WDBC) constitue l’un des jeux de données biomédicaux les plus connus pour l’étude du cancer du sein à l’aide de méthodes statistiques et de techniques d’apprentissage automatique. Développé au début des années 1990 au sein de l’Université du Wisconsin (Madison, USA), il est fondé sur l’analyse d’images cytologiques obtenues par ponction à l’aiguille fine (Fine Needle Aspiration – FNA). L’intérêt majeur de ce dataset est qu’il repose sur des données cliniques réelles, obtenues dans un contexte hospitalier, permettant de distinguer des tumeurs bénignes et malignes à partir de mesures numériques détaillées caractérisant la morphologie cellulaire.
 Comprendre l’origine du dataset, les méthodes de collecte, la population étudiée ainsi que l’état de la littérature scientifique est indispensable pour situer ces données dans leur cadre méthodologique et clinique. Les éléments qui suivent répondent précisément à ces questions.
-________________________________________
-Questions principales et réponses détaillées
 ________________________________________
 1. Qui a réalisé cette étude ?
 Cette étude a été menée par une équipe interdisciplinaire de l’University of Wisconsin–Madison, composée de :
@@ -122,8 +120,25 @@ Oui, il reste un benchmark majeur en recherche biomédicale et en machine learni
 •	les enseignements universitaires,
 •	les comparaisons de modèles,
 •	les études sur l’explicabilité des algorithmes,
-•	de nouvelles méthodes de sélection de variables.
-________________________________________
+•	de nouvelles méthodes de sélection de variabl
+_______________________________________
 Conclusion générale
 Le dataset WDBC s’inscrit dans une démarche innovante visant à moderniser le diagnostic du cancer du sein par l’intégration de la cytologie numérique et de méthodes d’apprentissage automatique. Issu d’une étude clinique rigoureuse menée à l’Université du Wisconsin, il est devenu une référence internationale pour la classification de données biomédicales. Les travaux contemporains confirment la solidité et la pertinence des caractéristiques morphologiques extraites par FNA pour distinguer, avec une très forte fiabilité, les tumeurs bénignes des tumeurs malignes.
 
+
+'''python
+from ucimlrepo import fetch_ucirepo 
+  
+# fetch dataset 
+breast_cancer_wisconsin_diagnostic = fetch_ucirepo(id=17) 
+  
+# data (as pandas dataframes) 
+X = breast_cancer_wisconsin_diagnostic.data.features 
+y = breast_cancer_wisconsin_diagnostic.data.targets 
+  
+# metadata 
+print(breast_cancer_wisconsin_diagnostic.metadata) 
+  
+# variable information 
+print(breast_cancer_wisconsin_diagnostic.variables) 
+'''
