@@ -126,7 +126,12 @@ Conclusion générale
 Le dataset WDBC s’inscrit dans une démarche innovante visant à moderniser le diagnostic du cancer du sein par l’intégration de la cytologie numérique et de méthodes d’apprentissage automatique. Issu d’une étude clinique rigoureuse menée à l’Université du Wisconsin, il est devenu une référence internationale pour la classification de données biomédicales. Les travaux contemporains confirment la solidité et la pertinence des caractéristiques morphologiques extraites par FNA pour distinguer, avec une très forte fiabilité, les tumeurs bénignes des tumeurs malignes.
 
 
-'''python
+
+
+
+
+
+```python
 from ucimlrepo import fetch_ucirepo 
   
 # fetch dataset 
@@ -141,4 +146,4 @@ print(breast_cancer_wisconsin_diagnostic.metadata)
   
 # variable information 
 print(breast_cancer_wisconsin_diagnostic.variables) 
-'''
+ ```
