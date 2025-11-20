@@ -13,8 +13,8 @@ Le jeu de données Cleveland est considéré comme la référence parmi les quat
 L’étude a été menée par :
 
 - Le **Cleveland Clinic Foundation**, centre hospitalier spécialisé en cardiologie, basé à Cleveland, Ohio (USA).
-- Les chercheurs principaux incluent :  
-  - **Dr. Robert Detrano**  
+- Les chercheurs principaux incluent :
+  - **Dr. Robert Detrano**
   - Le groupe *Multivariate Computerized Diagnosis of Coronary Artery Disease*
 
 Les fichiers du dataset font explicitement référence à **“ask-detrano”**, identifiant du Dr Detrano.
@@ -23,8 +23,8 @@ Les fichiers du dataset font explicitement référence à **“ask-detrano”**,
 
 ## 2. Quand cette étude a-t-elle été menée ?
 
-- Collecte initiale : **1978–1988**  
-- Publication UCI ML Repository : **1988**  
+- Collecte initiale : **1978–1988**
+- Publication UCI ML Repository : **1988**
 - Publications scientifiques associées : **1989–1990**
 
 ---
@@ -34,21 +34,20 @@ Les fichiers du dataset font explicitement référence à **“ask-detrano”**,
 Les données proviennent :
 
 ### 1️⃣ Examen clinique standardisé
-- Âge  
-- Sexe  
-- Type de douleur thoracique  
-- Tension artérielle  
-- Cholestérol  
-- Glycémie à jeun  
+- Âge
+- Sexe
+- Type de douleur thoracique
+- Tension artérielle
+- Cholestérol
+- Glycémie à jeun
 
 ### 2️⃣ Examens cardiologiques
-- ECG au repos  
-- Test d’effort  
-- Dépression du ST  
-- Pente du ST  
+- ECG au repos
+- Test d’effort
+- Dépression du ST
+- Pente du ST
 
-### 3️⃣ Angiographie coronaire
-Méthode de référence pour confirmer la coronaropathie.
+### 3️⃣ Angiographie coronaire (Gold standard)
 
 ➡️ Le dataset final contient **14 variables cliniques et électrocardiographiques**.
 
@@ -56,38 +55,38 @@ Méthode de référence pour confirmer la coronaropathie.
 
 ## 4. Où cette étude a-t-elle été menée ?
 
-- **Pays :** États-Unis  
-- **Ville :** Cleveland  
-- **Institution :** Cleveland Clinic Foundation  
+- **Pays :** États-Unis
+- **Ville :** Cleveland
+- **Institution :** Cleveland Clinic Foundation
 - **Autres centres associés :**
-  - Hongrie  
-  - Suisse  
-  - Hôpital Long Beach VA
+  - Hongrie
+  - Suisse
+  - Hôpital Long Beach VA (Californie)
 
 ---
 
 ## 5. Quelle population a été étudiée ?
 
-- **303 patients**  
-- Adultes hommes & femmes  
-- Suspects de coronaropathie  
+- **303 patients**
+- Adultes hommes & femmes
+- Suspects de coronaropathie
 
-Classes diagnostiques :
+Deux classes diagnostiques :
 
-- **0** : absence de maladie coronarienne  
+- **0** : absence de maladie coronarienne
 - **1** : présence d’une sténose ≥ 50 %
 
 ---
 
 ## 6. Quelles autres études ont obtenu des résultats similaires ?
 
-- **Detrano et al. (1990)** — modèle diagnostique multivarié  
-- **Janosi (1988)** — première analyse multivariée  
-- **Chaudhary (2016)** — SVM et NN (85–90 %)  
-- **Fahad (2020)** — RF & Gradient Boost (>92 %)  
+- **Detrano et al. (1990)** — modèle diagnostique multivarié
+- **Janosi (1988)** — première analyse multivariée
+- **Chaudhary (2016)** — SVM et NN (85–90 %)
+- **Fahad (2020)** — RF & Gradient Boost (>92 %)
 - **Mohammed (2021)** — XGBoost / CatBoost (94–96 %)
 
-➡️ Confirment la **robustesse** de la base Cleveland.
+➡️ Ces résultats confirment la **robustesse clinique** du dataset Cleveland.
 
 ---
 
@@ -95,24 +94,24 @@ Classes diagnostiques :
 
 ## 7. Nature des variables mesurées
 
-- Données démographiques  
-- Facteurs de risque  
-- Angine  
-- ECG  
-- Test d’effort  
-- Anomalies du ST  
-- Angine induite  
-- Nombre de vaisseaux colorés
+- Données démographiques
+- Facteurs de risque cardiovasculaire
+- Type d’angine
+- ECG au repos
+- Résultats du test d’effort
+- Anomalies du segment ST
+- Angine induite
+- Nombre de vaisseaux colorés (angiographie)
 
 ---
 
 ## 8. Pertinence médicale
 
-Les variables mesurent directement la physiopathologie :
+Les variables permettent d’observer les mécanismes physiopathologiques :
 
-- ischémie → anomalies ECG  
-- facteurs de risque → cholestérol, hypertension  
-- symptômes → douleur typique/atypique  
+- Ischémie → anomalies ECG
+- Facteurs de risque → cholestérol, hypertension
+- Symptômes → douleurs thoraciques typiques/atypiques
 
 ---
 
@@ -120,58 +119,58 @@ Les variables mesurent directement la physiopathologie :
 
 Étude :
 
-- **Observationnelle**  
-- **Multicentrique**  
-- **Clinique réelle**  
+- **Observationnelle**
+- **Multicentrique**
+- Basée sur des **données cliniques réelles**
 - Validée par **angiographie**
 
 ---
 
 ## 10. Limites méthodologiques
 
-- Dataset ancien  
-- Manque de biomarqueurs modernes  
-- Données manquantes  
-- Variabilité inter-hôpitaux
+- Dataset ancien
+- Absence de biomarqueurs modernes (ex : troponines)
+- Données manquantes
+- Variabilité entre centres hospitaliers
 
 ---
 
 ## 11. Généralisation
 
-Possibilité limitée :
+À interpréter avec précaution :
 
-- Données des années 1980  
-- Surreprésentation masculine  
-- Pas d’information ethnique  
+- Données hospitalières des années 1980
+- Surreprésentation masculine
+- Pas d’indication ethnique
 
 ---
 
 ## 12. Biais potentiels
 
-- Biais de sélection  
-- Biais techniques  
-- Biais hospitaliers
+- **Biais de sélection**
+- **Biais techniques**
+- **Biais inter-centres**
 
 ---
 
 ## 13. Modèles ML adaptés
 
-- Logistic Regression  
-- SVM  
-- Random Forest  
-- Gradient Boosting  
-- Neural Networks  
-- XGBoost / CatBoost  
+- Logistic Regression
+- SVM
+- Random Forest
+- Gradient Boosting
+- Neural Networks
+- XGBoost / CatBoost
 
 ---
 
 ## 14. Métriques pertinentes
 
-- Sensibilité  
-- Spécificité  
-- AUC-ROC  
-- F1-score  
-- Precision-Recall  
+- Sensibilité
+- Spécificité
+- AUC-ROC
+- F1-score
+- Courbe Precision-Recall
 
 ---
 
@@ -179,16 +178,16 @@ Possibilité limitée :
 
 Le dataset permet :
 
-- Développement d’outils d’aide au diagnostic  
-- Analyse des facteurs de risque  
-- Comparaison de modèles ML  
-- Détection précoce des coronaropathies  
+- Le développement d’outils d’aide au diagnostic
+- L’analyse des facteurs de risque
+- La comparaison de modèles prédictifs
+- L’amélioration de la détection précoce
 
 ---
 
 # 🟦 Conclusion générale
 
-Le dataset **Heart Disease – Cleveland** constitue un benchmark incontournable pour l’analyse du diagnostic de la maladie coronarienne. Malgré son ancienneté, il reste robuste et largement utilisé dans la littérature scientifique grâce à son lien direct avec les mécanismes physiopathologiques et les examens cliniques réels.
+Le dataset **Heart Disease – Cleveland** constitue un benchmark essentiel en cardiologie prédictive. Malgré son ancienneté, il reste pertinent grâce à ses données réelles, son lien direct avec les examens cliniques et sa validation par angiographie. Il continue d’alimenter la recherche en IA médicale et en diagnostic assisté par algorithme.
 
 ---
 
@@ -196,47 +195,47 @@ Le dataset **Heart Disease – Cleveland** constitue un benchmark incontournable
 
 ## 2.1 Statistiques Descriptives
 
-Les statistiques descriptives résument les principales caractéristiques des données.
+Les statistiques descriptives permettent de résumer les caractéristiques d’une variable.
 
 ---
 
 ## 🔹 Mesures de tendance centrale
 
-- **Moyenne**  
+- **Moyenne**
   \[
   \bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i
   \]
 
-- **Médiane**  
+- **Médiane**
 - **Mode**
 
 ---
 
 ## 🔹 Mesures de dispersion
 
-- **Variance**  
+- **Variance**
   \[
   s^2 = \frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2
   \]
 
-- **Écart-type**  
+- **Écart-type**
   \[
   s = \sqrt{s^2}
   \]
 
-- **Étendue**  
+- **Étendue**
   \[
   \max(x) - \min(x)
   \]
 
-- **IQR**  
+- **IQR**
   \[
   IQR = Q3 - Q1
   \]
 
 ---
 
-## 📌 Code Python – Statistiques descriptives
+## 📌 Code Python — Statistiques descriptives & visualisations
 
 ```python
 import pandas as pd
@@ -266,28 +265,25 @@ print(f"Q2: {colonne.quantile(0.50):.2f}")
 print(f"Q3: {colonne.quantile(0.75):.2f}")
 print(f"IQR: {colonne.quantile(0.75) - colonne.quantile(0.25):.2f}")
 
-
 sns.set_style("whitegrid")
 plt.rcParams['figure.figsize'] = (12, 8)
 
 fig, axes = plt.subplots(2, 2, figsize=(14, 10))
 
 axes[0, 0].hist(colonne, bins=30, edgecolor='black', alpha=0.7)
-axes[0, 0].set_title('Distribution des valeurs', fontsize=14, fontweight='bold')
+axes[0, 0].set_title('Distribution des valeurs')
 axes[0, 0].axvline(colonne.mean(), color='red', linestyle='--')
 axes[0, 0].axvline(colonne.median(), color='green', linestyle='--')
 
 axes[0, 1].boxplot(colonne.dropna())
-axes[0, 1].set_title('Boxplot - Détection des outliers')
+axes[0, 1].set_title('Boxplot - Outliers')
 
 colonne.plot(kind='density', ax=axes[1, 0])
 axes[1, 0].set_title('Courbe de densité')
 
 from scipy import stats
 stats.probplot(colonne.dropna(), dist="norm", plot=axes[1, 1])
-axes[1, 1].set_title('Q-Q Plot (Normalité)')
+axes[1, 1].set_title('Q-Q Plot')
 
 plt.tight_layout()
-plt.show()  
-```
-
+plt.show()
