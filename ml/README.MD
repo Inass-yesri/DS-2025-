@@ -127,6 +127,160 @@ Utilisation d’analyses statistiques similaires pour le contrôle qualité.
 
 ---
 
+# ======================================================
+#   ANALYSE STATISTIQUE + ACP + VISUALISATIONS COMPLETES
+# ======================================================
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+from scipy.stats import shapiro
+
+# ------------------------------------------------------
+# 1) Charger la BDD
+# ------------------------------------------------------
+df = pd.read_csv("winequality-white.csv", sep=';')
+print("\nAperçu des données :")
+print(df.head())
+
+# ------------------------------------------------------
+# 2) ANALYSE STATISTIQUE
+# ------------------------------------------------------
+
+print("\n===== STATISTIQUES DESCRIPTIVES =====")
+print(df.describe().T)
+
+# Valeurs manquantes
+print("\n===== VALEURS MANQUANTES =====")
+print(df.isnull().sum())
+
+# ------------------------------------------------------
+# 3) MATRICE DE CORRÉLATION (GRAPHE)
+# ------------------------------------------------------
+plt.figure(figsize=(10,7))
+sns.heatmap(df.corr(), cmap="coolwarm", annot=False)
+plt.title("Heatmap de la matrice de corrélation")
+plt.show()
+
+# ------------------------------------------------------
+# 4) DISTRIBUTION DES VARIABLES (HISTOGRAMMES)
+# ------------------------------------------------------
+df.hist(figsize=(14,10), bins=30)
+plt.suptitle("Distribution des variables", fontsize=15)
+plt.show()
+
+# ------------------------------------------------------
+# 5) BOXPLOTS (OUTLIERS)
+# ------------------------------------------------------
+plt.figure(figsize=(14,10))
+for i, col in enumerate(df.columns):
+    plt.subplot(4, 3, i+1)
+    sns.boxplot(x=df[col])
+    plt.title(col)
+plt.tight_layout()
+plt.show()
+
+# ------------------------------------------------------
+# 6) TEST DE NORMALITÉ SHAPIRO-WILK
+# ------------------------------------------------------
+print("\n===== TEST SHAPIRO (Normalité) =====")
+for col in df.columns:
+    sample = df[col].sample(500, random_state=0)  # max pour Shapiro
+    stat, p = shapiro(sample)
+    print(f"{col}: p-value={p:.4f} -> {'Non normal' if p < 0.05 else 'Normal'}")
+
+# ------------------------------------------------------
+# 7) PREPARATION DES DONNÉES POUR L’ACP
+# ------------------------------------------------------
+X = df.drop(columns=['quality'])
+y = df['quality']
+
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# ------------------------------------------------------
+# 8) ACP
+# ------------------------------------------------------
+pca = PCA(n_components=5)
+X_pca = pca.fit_transform(X_scaled)
+
+explained_var = pca.explained_variance_ratio_
+cum_var = np.cumsum(explained_var)
+
+print("\n===== VARIANCE EXPLIQUÉE =====")
+for i, v in enumerate(explained_var, start=1):
+    print(f"PC{i} : {v*100:.2f}%")
+
+# -------------------------
+# SCREE PLOT
+# -------------------------
+plt.figure(figsize=(7,5))
+plt.plot(range(1, len(explained_var)+1), explained_var, marker='o')
+plt.title("Scree plot - Variance expliquée")
+plt.xlabel("Composante principale")
+plt.ylabel("Variance expliquée")
+plt.grid(True)
+plt.show()
+
+# -------------------------
+# VARIANCE CUMULÉE
+# -------------------------
+plt.figure(figsize=(7,5))
+plt.plot(range(1, len(cum_var)+1), cum_var, marker='o')
+plt.title("Variance expliquée cumulée")
+plt.xlabel("Composantes")
+plt.ylabel("Variance cumulée")
+plt.grid(True)
+plt.show()
+
+# -------------------------
+# PROJECTION PC1 vs PC2
+# -------------------------
+plt.figure(figsize=(8,6))
+plt.scatter(X_pca[:,0], X_pca[:,1], c=y, cmap='viridis', alpha=0.7)
+plt.colorbar(label="quality")
+plt.xlabel("PC1")
+plt.ylabel("PC2")
+plt.title("Projection ACP : PC1 vs PC2")
+plt.grid(True)
+plt.show()
+
+# -------------------------
+# BIPLOT (loadings + individus)
+# -------------------------
+loadings = pca.components_.T
+features = X.columns
+
+plt.figure(figsize=(8,6))
+plt.scatter(X_pca[:,0], X_pca[:,1], alpha=0.4)
+
+for i, var in enumerate(features):
+    plt.arrow(0, 0, loadings[i,0]*3, loadings[i,1]*3, 
+              color='red', head_width=0.05)
+    plt.text(loadings[i,0]*3.2, loadings[i,1]*3.2, var, color='red')
+
+plt.xlabel("PC1")
+plt.ylabel("PC2")
+plt.title("Biplot ACP")
+plt.axhline(0); plt.axvline(0)
+plt.grid(True)
+plt.show()
+
+# -------------------------
+# HEATMAP DES LOADINGS
+# -------------------------
+load_df = pd.DataFrame(loadings, index=features,
+                       columns=[f"PC{i}" for i in range(1,6)])
+
+plt.figure(figsize=(10,6))
+sns.heatmap(load_df, annot=True, cmap="viridis")
+plt.title("Loadings des variables sur les composantes principales")
+plt.show()
+
+
 ## 🧠 Conclusion
 
 Le dataset **Wine Quality** constitue un excellent cas d’étude pour explorer la relation entre données chimiques objectives et évaluations sensorielles subjectives. Grâce à sa structure claire et à son adoption massive, il est idéal pour :
