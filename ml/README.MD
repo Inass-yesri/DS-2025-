@@ -349,7 +349,6 @@ print(df.describe())
 # Distribution de la qualité
 print(df["quality"].value_counts().sort_index())
 
-
 ## 🧠 Conclusion
 
 Le dataset **Wine Quality** constitue un excellent cas d’étude pour explorer la relation entre données chimiques objectives et évaluations sensorielles subjectives. Grâce à sa structure claire et à son adoption massive, il est idéal pour :
