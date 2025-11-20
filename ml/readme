@@ -1,55 +1,95 @@
 Introduction
+
 Le dataset Wine Quality est l’un des jeux de données les plus utilisés en data science pour étudier la prédiction de la qualité du vin à partir de ses caractéristiques physico-chimiques. Issu de recherches universitaires portugaises, il constitue un excellent support d’analyse exploratoire, de modélisation statistique et d’apprentissage automatique.
+
 Ce compte rendu vise à répondre aux questions fondamentales quoi, comment, quand, où, qui, tout en situant ce dataset dans un contexte scientifique plus large. Nous présenterons également des études similaires menées dans la littérature, démontrant l’importance croissante de la modélisation des préférences gustatives et du contrôle qualité basé sur les données. Une conclusion synthétique viendra refermer le document.
-________________________________________
+
 📌 1. Quoi ? (Objet de l’étude)
+
 Le fichier contient deux datasets :
-•	winequality-red.csv : 1 599 échantillons de vin rouge
-•	winequality-white.csv : 4 898 échantillons de vin blanc
+
+winequality-red.csv : 1 599 échantillons de vin rouge
+
+winequality-white.csv : 4 898 échantillons de vin blanc
+
 Ces données permettent de modéliser la qualité du vin notée par des experts, à partir de 11 mesures chimiques telles que l’acidité, l’alcool, le pH, la densité, etc.
-________________________________________
-🔧 2. Comment ? (Méthodologie utilisée dans les données)
+
+🔧 2. Comment ? (Méthodologie utilisée)
+
 Les données reposent sur deux types de mesures :
-🔬 1. Mesures physico-chimiques
-Chaque vin est analysé en laboratoire selon 11 variables standardisées :
-•	fixed acidity
-•	volatile acidity
-•	citric acid
-•	residual sugar
-•	chlorides
-•	free/total sulfur dioxide
-•	density
-•	pH
-•	sulphates
-•	alcohol
-👅 2. Mesures sensorielles
-Un panel d’experts attribue une note de 0 à 10, formant la variable cible quality.
-L’objectif est d’étudier les relations entre caractéristiques chimiques et appréciation humaine, et de permettre la modélisation automatique via :
-•	régression,
-•	classification,
-•	analyses statistiques (corrélations, distributions),
-•	modèles prédictifs (SVM, Random Forest, XGBoost, etc.).
-________________________________________
+
+🔬 2.1 Mesures physico-chimiques
+
+Chaque vin est analysé selon 11 variables standardisées :
+
+fixed acidity
+
+volatile acidity
+
+citric acid
+
+residual sugar
+
+chlorides
+
+free sulfur dioxide
+
+total sulfur dioxide
+
+density
+
+pH
+
+sulphates
+
+alcohol
+
+👅 2.2 Mesures sensorielles
+
+Un panel d’experts attribue une note de 0 à 10, formant la variable cible : quality.
+
+Ces données permettent :
+
+la régression,
+
+la classification,
+
+les analyses de corrélation, distribution,
+
+l’entraînement de modèles prédictifs (SVM, Random Forest, XGBoost, etc.).
+
 📅 3. Quand ? (Période)
-Les données proviennent d’un travail publié en 2009.
-Les mesures ont été collectées entre 2004 et 2007 au Portugal.
-________________________________________
+
+Données publiées en 2009
+
+Mesures collectées entre 2004 et 2007
+
 📍 4. Où ? (Lieu)
-Les vins proviennent de la région de Vinho Verde, située au nord du Portugal.
-Les analyses ont été réalisées :
-•	dans des laboratoires œnologiques portugais,
-•	en collaboration avec l’Université de Minho.
-________________________________________
+
+Les vins proviennent de la région de Vinho Verde (Nord du Portugal).
+Les analyses ont été effectuées :
+
+dans des laboratoires œnologiques portugais,
+
+en collaboration avec l’Université de Minho.
+
 👥 5. Qui ? (Auteurs et acteurs)
-Les recherches ont été menées par :
-•	Paulo Cortez
-•	António Cerdeira
-•	Fernando Almeida
-•	Telmo Matos
-•	José Reis
+
+Recherche réalisée par :
+
+Paulo Cortez
+
+António Cerdeira
+
+Fernando Almeida
+
+Telmo Matos
+
+José Reis
+
 Publication originale :
-Cortez et al. (2009) – “Modeling wine preferences by data mining from physicochemical properties” dans Decision Support Systems.
-________________________________________
+Cortez et al. (2009) – Modeling wine preferences by data mining from physicochemical properties, Decision Support Systems.
+
 📂 6. Structure des données
 Variable	Description
 fixed acidity	Acides non volatils
@@ -59,39 +99,52 @@ residual sugar	Sucre résiduel
 chlorides	Salinité
 free sulfur dioxide	Conservateur libre
 total sulfur dioxide	Conservateur total
-density	Densité du vin
+density	Densité
 pH	Acidité
 sulphates	Additif
 alcohol	Taux d’alcool
 quality	Note sensorielle
-________________________________________
-🔍 7. Questions possibles grâce au dataset
-•	Quels paramètres influencent le plus la qualité ?
-•	Y a-t-il une différence structurelle entre vins rouges et blancs ?
-•	Peut-on prédire la qualité d’un vin avec un modèle ?
-•	L’alcool est-il réellement lié à une meilleure note ?
-•	Quel est l’impact du sucre, du pH ou des sulfites ?
-________________________________________
-📚 8. Études similaires dans la littérature scientifique
-✔ Fernandes et al. (2015)
-Étude utilisant Random Forest et réseaux de neurones pour prédire la qualité du vin.
-✔ Zhang & Ma (2019)
-Évaluation de plusieurs modèles ML (SVM, KNN, Boosting) appliqués aux mêmes données.
-✔ “Wine Quality Prediction using ML Algorithms” (2020–2023)
-Une multitude d’articles et notebooks Kaggle utilisant ce dataset pour :
-•	PCA,
-•	Gradient Boosting,
-•	Deep Learning,
-•	Analyse des corrélations et clustering.
-✔ OIV (Organisation Internationale de la Vigne et du Vin)
-Rapports intégrant des modèles statistiques similaires pour le contrôle qualité.
-Ces travaux confirment que ce dataset est devenu une référence internationale pour tester des méthodes de régression ou classification.
-________________________________________
-🧠 Conclusion
-Le dataset Wine Quality représente un cas d’étude idéal pour explorer la relation entre données chimiques objectives et évaluations sensorielles subjectives. Grâce à sa structure propre, ses variables bien définies et son adoption massive par la communauté scientifique, il fournit un excellent terrain d’expérimentation pour :
-•	l’analyse exploratoire,
-•	la modélisation prédictive,
-•	l’apprentissage automatique supervisé,
-•	la comparaison de techniques statistiques.
-Les études similaires montrent que les relations entre composition chimique et qualité perçue sont complexes mais modélisables, faisant de ce dataset un benchmark incontournable pour la recherche et l’enseignement en data science.
+🔍 7. Questions explorables avec ce dataset
 
+Quels paramètres influencent le plus la qualité ?
+
+Y a-t-il une différence entre vins rouges et blancs ?
+
+Peut-on prédire la qualité avec un modèle ML ?
+
+L’alcool améliore-t-il la note ?
+
+Quel est l’impact du sucre, du pH ou des sulfites ?
+
+📚 8. Études similaires dans la littérature
+✔ Fernandes et al. (2015)
+
+Random Forest + réseaux de neurones pour prédire la qualité du vin.
+
+✔ Zhang & Ma (2019)
+
+Comparaison de SVM, KNN, Boosting sur les mêmes données.
+
+✔ "Wine Quality Prediction using ML Algorithms" (2020–2023)
+
+Approches diverses : PCA, Gradient Boosting, Deep Learning, clustering.
+
+✔ Rapports de l’OIV
+
+Utilisation d’analyses statistiques similaires pour le contrôle qualité.
+
+Ces travaux confirment que ce dataset est devenu une référence internationale.
+
+🧠 Conclusion
+
+Le dataset Wine Quality constitue un excellent cas d’étude pour explorer la relation entre données chimiques objectives et évaluations sensorielles. Grâce à sa structure claire et à son adoption massive dans la recherche, il est idéal pour :
+
+l’analyse exploratoire,
+
+la modélisation prédictive,
+
+l’apprentissage supervisé,
+
+la comparaison de modèles.
+
+Les études similaires montrent que les préférences gustatives peuvent être modélisées avec précision, faisant de ce dataset un benchmark incontournable en data science.
