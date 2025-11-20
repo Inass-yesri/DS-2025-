@@ -126,7 +126,7 @@ Approches diverses : PCA, Gradient Boosting, Deep Learning, clustering.
 Utilisation d’analyses statistiques similaires pour le contrôle qualité.
 
 ---
-
+```
 # ======================================================
 #   ANALYSE STATISTIQUE + ACP + VISUALISATIONS COMPLETES
 # ======================================================
@@ -279,6 +279,7 @@ plt.figure(figsize=(10,6))
 sns.heatmap(load_df, annot=True, cmap="viridis")
 plt.title("Loadings des variables sur les composantes principales")
 plt.show()
+```
 
 
 ## 🧠 Conclusion
