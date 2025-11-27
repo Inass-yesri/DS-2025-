@@ -1,4 +1,4 @@
-# 🧾 Compte-Rendu d'Étude – Analyse & Prédiction
+# 🧾 Compte-Rendu d'Étude LUNG CANCER – Analyse & Prédiction
 ---
 
 # 📌 Sommaire
