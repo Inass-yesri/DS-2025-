@@ -1,251 +1,340 @@
-# 🧾 Compte-Rendu d'Étude LUNG CANCER – Analyse & Prédiction
+# 🧾 Compte-Rendu d'Étude – Analyse de Sentiment de Posts Reddit sur des Artistes  
+
 ---
 
 # 📌 Sommaire
 1. [Introduction](#introduction)
 2. [Objectifs](#objectifs)
-3. [Méthodologie](#méthodologie)
-4. [Analyse](#analyse)
-5. [Visualisations & Graphiques](#visualisations--graphiques)
-   - [Distribution des variables](#distribution-des-variables)
-   - [Corrélation des variables](#corrélation-des-variables)
-   - [Matrice de confusion](#matrice-de-confusion)
-   - [Courbe ROC](#courbe-roc)
-   - [Importance des variables](#importance-des-variables)
-6. [Résultats](#résultats)
-7. [Limites](#limites)
-8. [Conclusion](#conclusion)
+3. [Description du dataset](#description-du-dataset)
+4. [Méthodologie](#méthodologie)
+5. [Analyse exploratoire](#analyse-exploratoire)
+   - [Répartition des sentiments](#répartition-des-sentiments)
+   - [Longueur des textes](#longueur-des-textes)
+   - [Exemples par sentiment](#exemples-par-sentiment)
+6. [Visualisations & Graphiques](#visualisations--graphiques)
+   - [Graphique 1 – Distribution des sentiments](#graphique-1--distribution-des-sentiments)
+   - [Graphique 2 – Distribution de la longueur des posts](#graphique-2--distribution-de-la-longueur-des-posts)
+   - [Graphique 3 – Longueur moyenne par sentiment](#graphique-3--longueur-moyenne-par-sentiment)
+7. [Résultats](#résultats)
+8. [Limites](#limites)
+9. [Conclusion](#conclusion)
 
 ---
 
 # ⭐ Introduction
-Ce rapport présente une étude prédictive basée sur un dataset de facteurs de risque (ex : tabagisme, pollution, âge, antécédents).  
-L’objectif est d'identifier les variables les plus influentes et de prédire le risque via des modèles de Machine Learning.
+
+Ce rapport présente une analyse exploratoire d’un dataset de **posts Reddit sur des artistes**, annotés par **sentiment**.
+
+Le fichier utilisé est :  
+
+- `reddit_artist_posts_sentiment.csv`
+
+Chaque ligne correspond à un post textuel, associé à un label de sentiment (`positive`, `negative`, `neutral`).  
+L’objectif est de décrire la structure des données, analyser la distribution des sentiments et la longueur des messages, et donner des pistes pour un futur modèle de classification.
 
 ---
 
 # 🎯 Objectifs
-- Comprendre l’impact des facteurs de risque  
-- Identifier les variables les plus importantes  
-- Construire un modèle performant  
-- Visualiser la distribution des données  
-- Analyser les performances avec des métriques + graphiques  
+
+Les objectifs de cette étude sont :
+
+- Décrire la **répartition des sentiments** dans le corpus.
+- Analyser la **longueur des posts** (en caractères et en mots).
+- Observer les différences de longueur selon le **type de sentiment**.
+- Fournir des **exemples concrets** pour chaque sentiment.
+- Préparer le terrain pour un **éventuel modèle de classification de sentiment**.
+
+---
+
+# 🗂 Description du dataset
+
+Après chargement du fichier CSV, on obtient :
+
+- **Nombre de lignes** : `31 948`
+- **Nombre de colonnes** : `2`
+
+Les colonnes sont :
+
+- `text` : le contenu textuel du post Reddit  
+- `label` : le sentiment associé au post (`positive`, `negative`, `neutral`)
 
 ---
 
 # 🧪 Méthodologie
-- **Pré-traitement** : nettoyage, encodage, normalisation  
-- **Visualisation** : histogrammes, heatmap  
-- **Modélisation** : Logistic Regression + Random Forest  
-- **Évaluation** : Accuracy, Recall, Matrice de Confusion, ROC  
+
+Les principales étapes d’analyse ont été :
+
+1. **Chargement des données**  
+   - Lecture du CSV avec `pandas`.
+
+2. **Nettoyage léger**
+   - Conversion systématique de `text` en chaîne de caractères.
+   - Création de deux nouvelles colonnes :
+     - `char_len` : longueur du texte en caractères
+     - `word_len` : longueur du texte en nombre de mots
+
+3. **Statistiques descriptives**
+   - Répartition des labels (`value_counts`)
+   - Statistiques sur les longueurs de texte (min, max, moyenne, quartiles)
+   - Moyenne de longueur par sentiment
+
+4. **Préparation des visualisations (à générer en Python ou autre)**
+   - Histogrammes et barplots
+   - Comparaison visuelle entre catégories de sentiments
 
 ---
 
-# 📊 Analyse
-Le dataset montre une forte présence de variables liées au style de vie (tabac, alcool), environnement (pollution) et caractéristiques personnelles (âge, sexe).
+# 📊 Analyse exploratoire
 
-Plusieurs relations fortes indiquent que :
-- le tabagisme est le facteur principal,
-- la pollution amplifie le risque,
-- les antécédents familiaux modifient fortement la probabilité d’apparition.
+## 📌 Répartition des sentiments
+
+Le dataset contient **31 948 posts**, répartis comme suit :
+
+| Sentiment | Nombre de posts | Pourcentage approximatif |
+|----------|-----------------|--------------------------|
+| neutral  | 19 728          | 61,75 %                  |
+| positive | 8 825           | 27,62 %                  |
+| negative | 3 395           | 10,63 %                  |
+
+### 🔍 Interprétation
+
+- La majorité des posts sont **neutres** (~62 %) :  
+  cela reflète probablement des messages factuels (annonces, critiques modérées, news).
+- Les posts **positifs** représentent environ **28 %** du corpus.
+- Les posts **négatifs** sont minoritaires (~11 %), ce qui crée un **déséquilibre de classes** à prendre en compte si on entraîne un modèle de Machine Learning (risque de biais vers la classe neutre).
+
+---
+
+## 📏 Longueur des textes
+
+Deux métriques ont été calculées :
+
+- `char_len` : longueur du texte en **caractères**
+- `word_len` : longueur du texte en **mots**
+
+### 📐 Statistiques globales (tous sentiments confondus)
+
+**Longueur en caractères (`char_len`) :**
+
+- Moyenne ≈ **96,3** caractères  
+- Écart-type ≈ **61,0**  
+- Minimum = **1**  
+- Médiane ≈ **79**  
+- Maximum = **280**
+
+**Longueur en mots (`word_len`) :**
+
+- Moyenne ≈ **16,8** mots  
+- Écart-type ≈ **11,1**  
+- Minimum = **1**  
+- Médiane ≈ **13**  
+- Maximum = **62**
+
+### 🔍 Interprétation
+
+- Les posts sont généralement **courts à moyens** (autour de 80–100 caractères / 13–17 mots).
+- Quelques posts sont très longs (jusqu’à **62 mots**), ce qui peut être le cas de critiques détaillées ou longues discussions.
+- La présence de textes très courts (1 mot) peut venir de réponses courtes, titres, ou posts minimalistes.
+
+---
+
+## 📏 Longueur moyenne par sentiment
+
+La longueur moyenne varie selon le sentiment :
+
+| Sentiment | Longueur moyenne (caractères) | Longueur moyenne (mots) |
+|----------|-------------------------------|--------------------------|
+| negative | 116,2                          | 20,5                     |
+| positive | 112,0                          | 19,9                     |
+| neutral  | 85,8                           | 14,8                     |
+
+### 🔍 Interprétation
+
+- Les posts **négatifs** et **positifs** sont **plus longs en moyenne** que les posts neutres.  
+- Les messages neutres sont souvent plus **factuels** ou concis (annonces, infos brutes).
+- Les messages avec un **sentiment fort** (positif ou négatif) ont tendance à être plus détaillés :  
+  explications, justifications, avis nuancés.
+
+---
+
+## 💬 Exemples par sentiment
+
+Voici quelques exemples réels issus du dataset (tronqués si besoin) :
+
+### 😡 Exemple de post *négatif* :
+
+> `pitchfork track review: taylor swift’s “actually romantic” is actually embarrassing`
+
+→ Ton négatif, jugement critique sur un morceau.
+
+---
+
+### 😃 Exemple de post *positif* :
+
+> `taylor swift has regained the masters of her first six albums.`
+
+→ Ton positif, bonne nouvelle, formulation factuelle mais connotée positivement.
+
+---
+
+### 😐 Exemple de post *neutre* :
+
+> `pitchfork review: taylor swift - the life of a showgirl (5.9)`
+
+→ Plutôt descriptif, neutre, annonce d’une review et d’une note.
 
 ---
 
 # 🖼️ Visualisations & Graphiques
 
----
-
-## 📈 Distribution des variables
-![Distribution Feature 1](images/distribution_smoking.png)
-
-### 🔍 **Analyse**
-- La distribution montre une forte proportion de personnes **fumeuses**.  
-- Cette variable est clairement **déséquilibrée**, ce qui influence le modèle.  
-- Le taux élevé de fumeurs suggère une population à risque → cohérent avec les observations médicales.
+> 💡 Les chemins d’images ci-dessous supposent que tu sauvegardes tes figures dans un dossier `images/` à la racine du repo.
 
 ---
 
-## 🔥 Distribution d’une autre variable importante (ex : Pollution Level)
-![Pollution Distribution](images/distribution_pollution.png)
+## 📊 Graphique 1 – Distribution des sentiments
 
-### 🔍 **Analyse**
-- La majorité des individus se trouvent entre un niveau de pollution *modéré à élevé*.  
-- Une queue à droite indique la présence de zones extrêmement polluées → possible cluster de risque.
+```
+python
+# Exemple de code pour générer la figure
+import matplotlib.pyplot as plt
+
+counts = df['label'].value_counts()
+
+plt.figure()
+counts.plot(kind='bar')
+plt.xlabel("Sentiment")
+plt.ylabel("Nombre de posts")
+plt.title("Distribution des sentiments")
+
+plt.figure()
+df['word_len'].hist(bins=30)
+plt.xlabel("Nombre de mots")
+plt.ylabel("Nombre de posts")
+plt.title("Distribution de la longueur des posts (en mots)")
+plt.tight_layout()
+plt.savefig("images/text_length_distribution.png")
+```
+🔍 Analyse
+
+Le pic principal se situe autour de 10–20 mots, confirmant que la plupart des posts sont assez courts.
+
+La queue de distribution montre l’existence de posts beaucoup plus longs :
+ces posts peuvent contenir des avis plus développés, critiques détaillées ou débats.
+
+```
+avg_len = df.groupby('label')['word_len'].mean().loc[['negative','neutral','positive']]
+
+plt.figure()
+avg_len.plot(kind='bar')
+plt.ylabel("Longueur moyenne (mots)")
+plt.xlabel("Sentiment")
+plt.title("Longueur moyenne des posts par sentiment")
+plt.tight_layout()
+plt.savefig("images/avg_length_by_sentiment.png")
+
+```
+🔍 Analyse
+
+Les posts négatifs sont légèrement les plus longs, suivis par les positifs.
+
+Les posts neutres sont significativement plus courts.
+
+Cela confirme l’hypothèse : plus l’auteur exprime une émotion ou un avis, plus il écrit de texte.
+
+# ✅ Résultats
+
+Les principaux résultats de cette analyse sont :
+
+## 📌 Répartition des sentiments
+- **~62 % neutres**
+- **~28 % positifs**
+- **~11 % négatifs**
+
+➡️ Le dataset est **déséquilibré**, ce qui doit être pris en compte pour entraîner un modèle de Machine Learning.
 
 ---
 
-## 🧬 Corrélation des variables
-![Heatmap Corrélation](images/correlation_heatmap.png)
-
-### 🔍 **Analyse**
-- Forte corrélation entre :
-  - **Smoking** et la variable cible (Cancer)  
-  - **Pollution** et **Symptoms**  
-- Faible corrélation entre âge et tabagisme → variables indépendantes.  
-- Le modèle Random Forest peut exploiter ces dépendances efficacement.
+## 📏 Longueur des posts
+- En moyenne : **~17 mots**
+- Variance importante entre les posts
+- Les posts peuvent être :
+  - **très courts** : 1 mot  
+  - **assez longs** : jusqu’à 62 mots  
 
 ---
 
-## 🧪 Matrice de confusion
-![Confusion Matrix](images/confusion_matrix.png)
-
-### 🔍 Analyse
-- **True Positives (TP)** élevés → le modèle identifie bien les individus à risque.  
-- **False Negatives (FN)** faibles → peu de patients à risque non détectés  
-  > Excellent pour un modèle médical : mieux vaut détecter trop que pas assez.  
-- Quelques **False Positives (FP)** : acceptable dans un contexte de prévention.
+## 🔍 Différences par sentiment
+- Les posts **positifs** et **négatifs** sont **plus longs** que les neutres.
+- Les posts **neutres** ont tendance à être plus **factuels** et concis.
+- Les messages exprimant une émotion forte (±) sont plus détaillés.
 
 ---
 
-## 📉 Courbe ROC
-![ROC Curve](images/roc_curve.png)
+## 💬 Exemples concrets
+Les exemples extraits du dataset confirment l’intuition :
 
-### 🔍 Analyse
-- AUC = **0.92** → excellente performance  
-- Le modèle discrimine très bien les classes  
-- Courbe proche du coin supérieur gauche → modèle robuste
-
----
-
-## 🌳 Importance des variables
-![Feature Importance](images/feature_importance.png)
-
-### 🔍 Analyse
-Top 5 variables influentes :
-
-| Rang | Variable | Importance |
-|------|----------|------------|
-| 1 | Smoking | ⭐⭐⭐⭐⭐ |
-| 2 | Pollution | ⭐⭐⭐⭐ |
-| 3 | Alcohol Consumption | ⭐⭐⭐ |
-| 4 | Genetic Risk | ⭐⭐⭐ |
-| 5 | Chronic Cough | ⭐⭐ |
-
-- **Smoking** domine largement → hypothèse confirmée  
-- **Pollution** joue un rôle significatif (effet long terme)  
-- **Variables cliniques** comme “Chronic Cough” ont aussi du poids  
-
----
-
-# 📈 Résultats
-
-| Métrique | Valeur |
-|---------|--------|
-| Accuracy | 0.89 |
-| Recall (classe positive) | 0.91 |
-| Precision | 0.86 |
-| AUC | 0.92 |
-| Meilleure variable | Smoking |
-
-### 📝 Interprétation
-Le modèle est :
-- fiable (accuracy élevée),
-- sécurisant (recall élevé → peu de cas ignorés),
-- cohérent avec la littérature médicale (tabac = facteur numéro 1).
+- Les posts **négatifs** expriment des critiques détaillées.
+- Les posts **positifs** expriment de bonnes nouvelles ou du soutien.
+- Les posts **neutres** sont des informations factuelles (annonces, revues, notes).
 
 ---
 
 # ⚠️ Limites
-- Dataset peut être **déséquilibré** → risque sur la précision  
-- Peu de variables médicales avancées  
-- Modèle sensible aux valeurs extrêmes (pollution)  
-- Étude non validée cliniquement  
+
+- Analyse basée uniquement sur la **dimension textuelle** (pas d’informations sur :
+  - auteur  
+  - date  
+  - subreddit  
+  - karma, etc.)
+- Dataset **déséquilibré** → risque de biais en classification.
+- Les labels *positive / negative / neutral* sont supposés corrects, mais il peut exister du **bruit d’annotation**.
+- Non inclus dans ce rapport :
+  - Analyse linguistique avancée (n-grams, vocabulaire)
+  - Entraînement d’un modèle de classification
 
 ---
 
 # 🏁 Conclusion
-L’étude montre que :
 
-- **Le tabagisme** est le facteur le plus déterminant  
-- La **pollution** et les **symptômes chroniques** renforcent le risque  
-- Le modèle **Random Forest** obtenant un **AUC de 0.92** est le plus performant  
-- Le système peut être utilisé comme **outil d’aide à la décision** pour dépistage précoce
+Cette première analyse exploratoire du dataset `reddit_artist_posts_sentiment.csv` montre que :
 
-Recommandations futures :
-- intégrer d’autres mesures cliniques (imagerie, prise de sang),
-- équilibrer mieux le dataset,
-- valider sur un dataset médical réel.
-
-```
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-#For ignoring warning
-import warnings
-warnings.filterwarnings("ignore")
-
-# This Python 3 environment comes with many helpful analytics libraries installed
-# It is defined by the kaggle/python Docker image: https://github.com/kaggle/docker-python
-# For example, here's several helpful packages to load
-
-import numpy as np # linear algebra
-import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
-
-# Input data files are available in the read-only "../input/" directory
-# For example, running this (by clicking run or pressing Shift+Enter) will list all files under the input directory
-
-import os
-for dirname, _, filenames in os.walk('/kaggle/input'):
-    for filename in filenames:
-        print(os.path.join(dirname, filename))
-
-# You can write up to 20GB to the current directory (/kaggle/working/) that gets preserved as output when you create a version using "Save & Run All"
-# You can also write temporary files to /kaggle/temp/, but they won't be saved outside of the current session
-
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-import warnings
-warnings.filterwarnings('ignore')
-from sklearn.model_selection import train_test_split
-from sklearn.datasets import load_digits
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
-
-df=pd.read_csv('https://www.kaggle.com/datasets/mysarahmadbhat/lung-cancer')
-df
-
-df.shape
-
-#Checking for Duplicates
-df.duplicated().sum()
-
-#Removing Duplicates
-df=df.drop_duplicates()
-
-#Checking for null values
-df.isnull().sum()
-
-df.info()
-
-df.describe()
-
-rom sklearn import preprocessing
-le=preprocessing.LabelEncoder()
-df['GENDER']=le.fit_transform(df['GENDER'])
-df['LUNG_CANCER']=le.fit_transform(df['LUNG_CANCER'])
-df['SMOKING']=le.fit_transform(df['SMOKING'])
-df['YELLOW_FINGERS']=le.fit_transform(df['YELLOW_FINGERS'])
-df['ANXIETY']=le.fit_transform(df['ANXIETY'])
-df['PEER_PRESSURE']=le.fit_transform(df['PEER_PRESSURE'])
-df['CHRONIC DISEASE']=le.fit_transform(df['CHRONIC DISEASE'])
-df['FATIGUE ']=le.fit_transform(df['FATIGUE '])
-df['ALLERGY ']=le.fit_transform(df['ALLERGY '])
-df['WHEEZING']=le.fit_transform(df['WHEEZING'])
-df['ALCOHOL CONSUMING']=le.fit_transform(df['ALCOHOL CONSUMING'])
-df['COUGHING']=le.fit_transform(df['COUGHING'])
-df['SHORTNESS OF BREATH']=le.fit_transform(df['SHORTNESS OF BREATH'])
-df['SWALLOWING DIFFICULTY']=le.fit_transform(df['SWALLOWING DIFFICULTY'])
-df['CHEST PAIN']=le.fit_transform(df['CHEST PAIN'])
-df['LUNG_CANCER']=le.fit_transform(df['LUNG_CANCER'])
-
-#Let's check what's happened now
-df
-
-```
+- La **répartition des sentiments** est fortement déséquilibrée.
+- La **longueur des posts** varie selon le sentiment.
+- Les posts exprimant une émotion (positive ou négative) sont **plus longs** et **plus développés**.
+- Le dataset présente des caractéristiques importantes pour la mise en place d’un futur modèle NLP.
 
 ---
+
+# 👣 Prochaines étapes possibles
+
+### 🔧 Extraction de features
+- TF-IDF  
+- Bag-of-Words  
+- Word embeddings (Word2Vec, GloVe)  
+- Transformers embeddings (BERT, RoBERTa)
+
+### 🤖 Modélisation
+- Logistic Regression  
+- SVM  
+- Random Forest  
+- BERT finetuné  
+
+### 📊 Évaluation (dataset déséquilibré)
+- F1-score par classe  
+- Macro-F1  
+- Matrice de confusion  
+- Balanced Accuracy  
+
+### 📚 Analyse complémentaire
+- Wordclouds par sentiment  
+- Top n-grams  
+- Analyse des posts longs vs courts  
+
+---
+
+
+
+
+plt.tight_layout()
+plt.savefig("images/sentiment_distribution.png")
 
