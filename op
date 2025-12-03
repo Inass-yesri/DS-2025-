@@ -1,0 +1,169 @@
+# 🫀 Heart Disease Prediction — Analyse Complète, EDA, Machine Learning & ACP
+## 🔬 Rapport complet en Markdown — Projet de prédiction de la maladie cardiaque
+
+---
+
+# 🟦 1. Introduction
+
+La prédiction de la maladie cardiaque est l’un des domaines les plus étudiés en data science médicale. Le dataset **Heart Disease** est un standard mondial publié dans le *UCI Machine Learning Repository*.  
+Le présent document résume le travail réalisé dans le notebook *heart-disease-predictions.ipynb* :  
+
+- Exploration statistique (EDA)  
+- Prétraitement des données  
+- Comparaison de plusieurs modèles de Machine Learning  
+- Analyse en Composantes Principales (ACP)  
+- Interprétations et visualisations  
+
+Il répond aux questions essentielles **quoi, qui, quand, où et comment**, puis fournit une conclusion scientifique expliquant les résultats obtenus.
+
+---
+
+# ❓ 2. Questions fondamentales
+
+## 🟥 2.1 Quoi ? (Nature du document et du dataset)
+
+Le fichier analysé est le dataset **Heart Disease**, contenant des données cliniques destinées à prédire la présence ou l’absence d’une maladie cardiaque.
+
+### Variables clés :
+- Âge  
+- Sexe  
+- Tension artérielle  
+- Cholestérol  
+- Fréquence cardiaque maximale  
+- Dépression ST (oldpeak)  
+- Type de douleur thoracique  
+- Angine induite (exang)  
+- Résultats ECG  
+- Nombre de vaisseaux colorés (ca)
+
+🎯 **Variable cible** :  
+- `1` = maladie cardiaque  
+- `0` = absence de maladie
+
+Le notebook réalise :
+- EDA complète  
+- Visualisations  
+- Prétraitement  
+- Training de modèles ML  
+- ACP  
+
+---
+
+## 🟧 2.2 Qui ? (Auteurs et acteurs)
+
+- Le dataset original provient de la **Cleveland Clinic Foundation**.  
+- Le chercheur principal est **Dr. Robert Detrano**, cardiologue.  
+- Le notebook fourni a été produit dans un environnement **Kaggle Notebook** ou Jupyter.
+
+---
+
+## 🟨 2.3 Quand ? (Période)
+
+- Données collectées : **1978–1988**  
+- Publication Dataset : **1988**  
+- Notebook exécuté récemment (structure Kaggle moderne)
+
+---
+
+## 🟩 2.4 Où ? (Lieu)
+
+- Lieu de collecte initiale : **Cleveland, Ohio (USA)**.  
+- Autres centres associés :  
+  - Hongrie  
+  - Suisse  
+  - Long Beach VA (Californie)
+
+---
+
+## 🟦 2.5 Comment ? (Méthodologie du notebook)
+
+Le document suit les étapes suivantes :
+
+### **1️⃣ Chargement et inspection du dataset**
+```python
+df = pd.read_csv("heart.csv")
+df.head()
+df.info()
+df.describe()
+```
+2️⃣ EDA : visualisations
+
+Heatmap des corrélations
+
+Boxplots
+
+Histograms
+
+Pairplots
+
+3️⃣ Prétraitement
+
+Normalisation StandardScaler
+
+Encodage si nécessaire
+
+Séparation train/test
+
+4️⃣ Training de plusieurs modèles ML
+
+Logistic Regression
+
+Random Forest
+
+SVM
+
+KNN
+
+Decision Trees
+
+Gradient Boosting
+
+5️⃣ Évaluation
+
+Accuracy
+
+F1-score
+
+ROC-AUC
+
+Matrice de confusion
+
+Résultats :
+
+oldpeak → corrélation négative forte avec target
+
+cp, thalach, slope → corrélation positive
+
+ca, exang → variables prédictives importantes
+
+📌 Interprétation :
+
+Les variables liées à :
+
+la douleur thoracique,
+
+la capacité cardiaque sous effort,
+
+les anomalies ST
+sont les facteurs les plus informatifs.
+
+⚙️ 4. Prétraitement des données
+Standardisation
+6️⃣ Analyse en Composantes Principales (ACP)
+
+➡️ Pour visualiser la structure des données.
+
+📊 3. Analyse Exploratoire (EDA)
+🔥 Heatmap des corrélations
+```
+sns.heatmap(df.corr(), cmap="coolwarm")
+```
+
+
+
+
+
+
+
+
+
